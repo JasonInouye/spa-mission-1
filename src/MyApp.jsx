@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, CardHeader, Text, Icon } from "@ui5/webcomponents-react";
-import { spacing } from "@ui5/webcomponents-react-base";
-import { BarChart, LineChart } from "@ui5/webcomponents-react-charts"
-import { useState } from "react";
+import {Card, CardHeader, Text, Icon} from "@ui5/webcomponents-react";
+import {spacing} from "@ui5/webcomponents-react-base";
+import {BarChart, LineChart} from "@ui5/webcomponents-react-charts"
+import {useState} from "react";
 import "@ui5/webcomponents-icons/dist/line-chart.js";
 import "@ui5/webcomponents-icons/dist/horizontal-bar-chart.js";
 
@@ -38,32 +38,36 @@ const dataset = [
   ];
 
 function MyApp() {
-    const [ toggleCharts, setToggleCharts ] = useState("lineChart");
-    const [ loading, setLoading ] = useState(false);
+    const [toggleCharts, setToggleCharts] = useState("lineChart");
+    const [loading, setLoading] = useState(false);
 
     const handleHeaderClick = () => {
-        if ( toggleCharts === "lineChart" ){
+        if (toggleCharts === "lineChart" ){
             setLoading(true);
             setTimeout(() => {
-                setLoading( false );
-                setToggleCharts( "barChart" );
+                setLoading(false);
+                setToggleCharts("barChart");
             }, 2000);
         }   else {
             setLoading(true);
             setTimeout(() => {
-                setLoading( false );
-                setToggleCharts( "barChart" )
-            })
-            setToggleCharts( "lineChart" );
+                setLoading(false);
+                setToggleCharts("lineChart"); 
+            }, 2000)
         }
     };
+
+    const contentTitle = toggleCharts === 'lineChart' ? 'Line Chart' : 'Bar Chart';
+    const switchToChart = toggleCharts === 'lineChart' ? 'Bar Chart' : 'Line Chart';
+
 
     return <div>
         <Card 
             header={
                 <CardHeader 
-                    avatar={< Icon name={ toggleCharts === "lineChart" ? "line-chart" : "horizontal-bar-chart" } />}
-                    titleText="Card" 
+                    avatar={< Icon name={toggleCharts === "lineChart" ? "line-chart" : "horizontal-bar-chart"} />}
+                    titleText="Stock Prices" 
+                    subtitleText={`Click here to switch to ${switchToChart}`}
                     interactive
                     onClick={handleHeaderClick}
                 />
@@ -74,15 +78,17 @@ function MyApp() {
             </Text>     
             { toggleCharts === "lineChart" ? (
             <LineChart 
-                measures={[{ accessor: "data", label: "Stock Price" }]} 
-                dimensions={[{ accessor: "month" }]} 
-                dataset={ dataset }
+                measures={[{accessor: "data", label: "Stock Price"}]} 
+                dimensions={[{accessor: "month"}]} 
+                dataset={dataset}
+                loading={loading}
             />
             ) : (
             <BarChart 
-                dimensions={[{ accessor: "month" }]}
-                measures={[{ accessor: "data", label: "Stock Price"}]}
-                dataset={ dataset }
+                dimensions={[{accessor: "month" }]}
+                measures={[{accessor: "data", label: "Stock Price"}]}
+                dataset={dataset}
+                loading={loading}
             />
             )}
         </Card>
