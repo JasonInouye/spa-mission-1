@@ -1,12 +1,15 @@
 import React from "react";
 import MyApp from "./MyApp";
 import { ThemeProvider } from "@ui5/webcomponents-react";
+import { HashRouter } from "react-router-dom"
 
 function App() {
   return (
-    <ThemeProvider>
-      <MyApp />
-    </ThemeProvider>
+    <HashRouter>
+      <ThemeProvider>
+        <MyApp />
+      </ThemeProvider>
+    </HashRouter>
   );
 }
 
