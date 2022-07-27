@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {spacing} from "@ui5/webcomponents-react-base";
-import {BarChart, LineChart} from "@ui5/webcomponents-react-charts"
+import {BarChart, LineChart} from "@ui5/webcomponents-react-charts";
+import {useNavigate} from "react-router-dom";
+import MyCustomElement from "./MyCustomElement";
 import "@ui5/webcomponents-icons/dist/line-chart.js";
 import "@ui5/webcomponents-icons/dist/horizontal-bar-chart.js";
 import "@ui5/webcomponents-icons/dist/list.js";
@@ -85,9 +87,15 @@ const dataset = [
     }
   ];
 
+
 function Home() {
     const [toggleCharts, setToggleCharts] = useState("lineChart");
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const handleProgressHeaderClick = () => {
+        navigate("/detail");
+    };
 
     const handleHeaderClick = () => {
         if (toggleCharts === "lineChart" ){
@@ -115,6 +123,7 @@ function Home() {
             wrap={FlexBoxWrap.Wrap}
             style={spacing.sapUiContentPadding}
         >     
+            <MyCustomElement />
             <Card 
                 header={
                     <CardHeader 
@@ -152,6 +161,8 @@ function Home() {
                         titleText="Progress"
                         subtitleText="List"
                         avatar={<Icon name="list" />}
+                        interactive
+                        onClick={handleProgressHeaderClick}
                     />
                 }
             style={{width: "300px", ...spacing.sapUiContentPadding}}
