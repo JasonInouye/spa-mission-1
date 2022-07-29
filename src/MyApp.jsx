@@ -30,7 +30,7 @@ function MyApp() {
         </ShellBar>
         <Routes>
             <Route path="/home" element={<Home />} />
-            <Route path="/detail" element={<Detail />} />
+            {/* <Route path="/detail" element={<Detail />} /> */}
             <Route path="/" element={<Navigate replace to="/home" />} />
         </Routes>
     </>

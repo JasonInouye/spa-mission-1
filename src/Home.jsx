@@ -121,7 +121,7 @@ function Home() {
         <FlexBox
             justifyContent={FlexBoxJustifyContent.Center}
             wrap={FlexBoxWrap.Wrap}
-            style={spacing.sapUiContentPadding}
+            
         >     
             <MyCustomElement />
             <Card 

@@ -15,8 +15,6 @@ const styles = {
 
 const useStyles = createUseStyles(styles);
 
-/8/--
-
 function MyCustomElement() {
     const classes = useStyles();
     
